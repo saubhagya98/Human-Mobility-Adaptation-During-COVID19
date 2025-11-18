@@ -8,7 +8,7 @@ from scipy.spatial.distance import cdist
 from sklearn.cluster import KMeans
 
 # Define the file path
-file_path = "E:/Research/Mobility/Datasets/a2/dataset_for_unsupervised_ML.csv"
+file_path = "data/output/dataset_for_unsupervised_ML.csv"
 
 # Read the CSV file
 df = pd.read_csv(file_path)
@@ -25,7 +25,7 @@ pca_result = pca.fit_transform(df_scaled)
 pca_df = pd.DataFrame(data=pca_result, columns=[f'PC{i+1}' for i in range(13)])
 
 #Save the PCA-transformed data
-pca_df.to_csv("E:/Research/Mobility/Datasets/a2/pca_13_components.csv", index=False)
+pca_df.to_csv("data/output/pca_13_components.csv", index=False)
 
 # Convert to NumPy array
 X = pca_df.values
@@ -75,7 +75,7 @@ plt.tight_layout()
 
 
 # Save figure
-plt.savefig("E:/Research/Mobility/Datasets/a2/eigengap_curve.png",
+plt.savefig("data/output/eigengap_curve.png",
             bbox_inches="tight", dpi=600)
 
 plt.show()
