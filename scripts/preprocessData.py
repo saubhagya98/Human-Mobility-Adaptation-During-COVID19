@@ -25,6 +25,7 @@ def process_csv_data(input_file, output_file):
     print(f"Results saved to {output_file}")
 
 # Example usage
-input_file = "E:/Research/Mobility/Datasets/a2/dataset_without_demographics.csv"  # Replace with your actual file path
-output_file = "E:/Research/Mobility/Datasets/a2/dataset_for_unsupervised_ML.csv"  # Output file name
+input_file = "data/input/dataset_without_demographics.csv"  # Replace with your actual file path
+output_file = "data/output/dataset_for_unsupervised_ML.csv"  # Output file name
+
 process_csv_data(input_file, output_file)
