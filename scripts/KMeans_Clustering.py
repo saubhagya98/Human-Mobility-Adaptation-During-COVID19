@@ -8,7 +8,7 @@ from sklearn.cluster import KMeans
 n_clusters = 4
 
 #input file 
-file_path = "E:/Research/Mobility/Datasets/a2/pca_13_components.csv"
+file_path = "data/output/pca_13_components.csv"
 pca_df = pd.read_csv(file_path)
 
 # Apply K-means clustering
@@ -45,4 +45,5 @@ if X.shape[1] >= 2:
     plt.show()
 
 else:
+
     print("Cannot visualize clusters directly (data is not 2D or 3D).")
