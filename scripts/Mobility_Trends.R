@@ -239,6 +239,459 @@ atm_plot <- ggplot(atm_means, aes(x = Wave, y = Mean, group = factor(cluster), c
 # Step 8: Save final image in high resolution
 ggsave("data/output/Factor4.png", plot = atm_plot, width = 10, height = 6, dpi = 600, bg = "white")
 
+# Factor 5
+# Step 2: Set variable representing Factor 5
+target_var <- "using public transport to going to work"
+
+# Step 3: Function to compute mean by cluster for a given wave
+get_means <- function(df, wave_label) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(.data[[target_var]], na.rm = TRUE)) %>%
+    mutate(Wave = wave_label)
+}
+
+# Step 4: Compute mean values for all waves
+means_pre <- get_means(pre, "Pre-Pandemic")
+means_first <- get_means(first, "First Wave")
+means_second <- get_means(second, "Second Wave")
+means_third <- get_means(third, "Third Wave")
+
+# Step 5: Combine into single dataset
+public_transport_means <- bind_rows(means_pre, means_first, means_second, means_third)
+
+# Step 6: Format 'Wave' as an ordered factor for slope plotting
+public_transport_means$Wave <- factor(public_transport_means$Wave,
+                                      levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Step 7: Define color palette (colorblind friendly)
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+# Step 8: Generate slope plot
+pt_plot <- ggplot(public_transport_means, aes(x = Wave, y = Mean, group = factor(cluster), color = factor(cluster))) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3.2) +
+  scale_color_manual(values = palette_cb) +
+  labs(
+    title = "Change in Public Transport Reliance Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: <i>Using Public Transport to Go to Work</i>, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 5: Public Transport Reliance)",
+    color = "Cluster"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_markdown(size = 12),
+    axis.title = element_text(size = 13),
+    axis.text = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+
+# Step 9: Save the plot
+ggsave("data/output/Factor5.png", plot = pt_plot, width = 10, height = 6, dpi = 600, bg = "white")
+
+# Factor 6
+# Function to calculate means by cluster
+get_means <- function(data, variable, wave_label) {
+  data %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(.data[[variable]], na.rm = TRUE)) %>%
+    mutate(Wave = wave_label)
+}
+
+# Calculate means for Factor 6
+factor6_var <- "accessing to food through Govt/NGO"
+factor6_means <- bind_rows(
+  get_means(pre, factor6_var, "Pre-Pandemic"),
+  get_means(first, factor6_var, "First Wave"),
+  get_means(second, factor6_var, "Second Wave"),
+  get_means(third, factor6_var, "Third Wave")
+)
+
+# Convert Wave to ordered factor
+factor6_means$Wave <- factor(factor6_means$Wave,
+                             levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Colorblind-friendly palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+# Plot
+ggplot(factor6_means, aes(x = Wave, y = Mean, group = factor(cluster), color = factor(cluster))) +
+  geom_line(linewidth = 1.3) +
+  geom_point(size = 3) +
+  scale_color_manual(values = palette_cb) +
+  labs(
+    title = "Access to Essential Services During Pandemic Waves",
+    subtitle = "Mean scores for the factor: <i>Accessing Food through Govt/NGO</i>, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score \n(Factor 6:Essential Services and Community Resources Access)",
+    color = "Cluster"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_markdown(size = 12),
+    axis.title = element_text(size = 13),
+    axis.text = element_text(size = 11),
+    legend.position = "bottom",
+    legend.title = element_text(size = 11),
+    legend.text = element_text(size = 10),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+
+# Save to file
+ggsave("data/output/Factor6.png", width = 10, height = 6, dpi = 600, bg = "white")
+
+# Factor 7
+# Colorblind-friendly palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+# Load the datasets for each pandemic phase
+pre_df <- read_csv("PrePandemic.csv",show_col_types = FALSE)
+first_df <- read_csv("First_Wave.csv", show_col_types = FALSE)
+second_df <- read_csv("Second_Wave.csv", show_col_types = FALSE)
+third_df <- read_csv("Third_Wave.csv", show_col_types = FALSE)
+
+# Function to calculate means for a given dataset
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`using bicycle to going to work`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for each phase
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means into one dataframe
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Ensure correct ordering of phases
+all_means$Phase <- factor(all_means$Phase, 
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+
+# Plot with white background and consistent style
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Bicycle Mobility Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Using Bicycle to Go to Work, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 7: Bicycle Mobility)",
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save the plot
+ggsave("data/output/Factor7.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 8
+# Colorblind-friendly palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+
+# Function to calculate means for the target variable
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`work with irregular few unknown people and limited unknown people`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for each phase
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Set factor order for phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Variable Level of Work Exposure Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Work with Limited & Irregular Contact with Unknown People, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 8: Variable Work Exposure)",
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor8.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 9
+# Colorblind-friendly palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+
+# Function to calculate means for the target variable
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`using hired three wheelers to going to work`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for each phase
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Set factor order for phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Hired Transport Dependence Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Using Hired Three-Wheelers to Go to Work, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 9: Hired Transport Dependence)",
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor9.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 10
+# Function to calculate means for the target variable
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`accessing to Home delivery/mobile shops`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for each phase
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Set factor order for phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Community Resource Sourcing Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Accessing Home Delivery or Mobile Shops, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 10: Community Resource Sourcing)",
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor10.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 11
+# Function to calculate means for the target variable
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`using shared vehicle  to going to work`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for each phase
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Set factor order for phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Shared Group Transport Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Using Shared Vehicle to Go to Work, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 11: Shared Group Transport)",
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor11.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 12
+# Function to calculate means
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`walking to going to work`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for all phases
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Set order of phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Create wrapped y-axis label (manual line break)
+y_label <- "Standardized Mean Score\n(Factor 12: Proximal Living and Active Commuting)"
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Proximal Living and Active Commuting Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Walking to Go to Work, by cluster",
+    x = "Pandemic Phase",
+    y = y_label,
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor12.png", p, width = 12, height = 7, dpi = 300)
+
+# Factor 13
+# Function to calculate means for the variable
+calc_means <- function(df, phase) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(`accessing to online apps`, na.rm = TRUE)) %>%
+    mutate(Phase = phase)
+}
+
+# Calculate means for all phases
+pre_means <- calc_means(pre_df, "Pre-Pandemic")
+first_means <- calc_means(first_df, "First Wave")
+second_means <- calc_means(second_df, "Second Wave")
+third_means <- calc_means(third_df, "Third Wave")
+
+# Combine all means
+all_means <- bind_rows(pre_means, first_means, second_means, third_means)
+
+# Ensure correct order of phases
+all_means$Phase <- factor(all_means$Phase,
+                          levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Define y-axis label with line break
+y_label <- "Standardized Mean Score\n(Factor 13: Digital Platform Engagement)"
+
+# Create plot
+p <- ggplot(all_means, aes(x = Phase, y = Mean, color = as.factor(cluster), group = cluster)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  theme_minimal(base_size = 14) +
+  scale_color_manual(values = palette_cb)+
+  labs(
+    title = "Change in Digital Platform Engagement Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: Accessing Online Apps, by cluster",
+    x = "Pandemic Phase",
+    y = y_label,
+    color = "Cluster"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
+
+# Save plot
+ggsave("data/output/Factor13.png", p, width = 12, height = 7, dpi = 300)
+
 
 
 
