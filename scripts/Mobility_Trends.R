@@ -6,7 +6,7 @@ library(readr)
 
 # Data Preparation
 # Step 1: Load all wave datasets
-pre <- read_csv("PrePandemic.csv",show_col_types = FALSE)
+pre <- read_csv("data/input/PrePandemic.csv",show_col_types = FALSE)
 first <- read_csv("First_Wave.csv",show_col_types = FALSE)
 second <- read_csv("Second_Wave.csv",show_col_types = FALSE)
 third <- read_csv("Third_Wave.csv", show_col_types = FALSE)
