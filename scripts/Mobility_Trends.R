@@ -131,6 +131,63 @@ motor_plot <- ggplot(motor_means, aes(x = Wave, y = Mean, group = factor(cluster
 # Step 7: Save the cleaned plot
 ggsave("data/output/Factor2.png", plot = motor_plot, width = 10, height = 6, dpi = 600, bg = "white")
 
+# Factor 3
+# Step 2: Define the variable for Factor 3
+target_var <- "work from home"
+
+# Step 3: Function to compute mean by cluster
+get_means <- function(df, wave_label) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(.data[[target_var]], na.rm = TRUE)) %>%
+    mutate(Wave = wave_label)
+}
+
+# Step 4: Calculate means for all waves
+means_pre <- get_means(pre, "Pre-Pandemic")
+means_first <- get_means(first, "First Wave")
+means_second <- get_means(second, "Second Wave")
+means_third <- get_means(third, "Third Wave")
+
+# Step 5: Combine all into one tidy data frame
+home_means <- bind_rows(means_pre, means_first, means_second, means_third)
+
+# Step 6: Convert Wave into ordered factor
+home_means$Wave <- factor(home_means$Wave, levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Define colorblind-friendly palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+# Step 7: Plot the slope graph
+home_plot <- ggplot(home_means, aes(x = Wave, y = Mean, group = factor(cluster), color = factor(cluster))) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3.2) +
+  scale_color_manual(values = palette_cb) +
+  labs(
+    title = "Change in Home-Based Work Isolation Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: <i>Work from Home</i>, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 3: Home-Based Work Isolation)",
+    color = "Cluster"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_markdown(size = 12),
+    axis.title = element_text(size = 13),
+    axis.text = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+
+# Step 8: Save the final plot
+ggsave("data/output/Factor3.png", plot = home_plot, width = 10, height = 6, dpi = 600, bg = "white")
+
+
+
+
 
 
 
