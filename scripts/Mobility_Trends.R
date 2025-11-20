@@ -185,6 +185,59 @@ home_plot <- ggplot(home_means, aes(x = Wave, y = Mean, group = factor(cluster),
 # Step 8: Save the final plot
 ggsave("data/output/Factor3.png", plot = home_plot, width = 10, height = 6, dpi = 600, bg = "white")
 
+# Factor 4
+# Step 2: Define the variable representing Factor 4
+target_var <- "accessing to ATM in city"
+
+# Step 3: Function to calculate mean by cluster
+get_means <- function(df, wave_label) {
+  df %>%
+    group_by(cluster) %>%
+    summarise(Mean = mean(.data[[target_var]], na.rm = TRUE)) %>%
+    mutate(Wave = wave_label)
+}
+
+# Step 4: Calculate means for each wave
+means_pre <- get_means(pre, "Pre-Pandemic")
+means_first <- get_means(first, "First Wave")
+means_second <- get_means(second, "Second Wave")
+means_third <- get_means(third, "Third Wave")
+
+# Step 5: Combine all results
+atm_means <- bind_rows(means_pre, means_first, means_second, means_third)
+
+# Step 6: Format 'Wave' as ordered factor for correct slope ordering
+atm_means$Wave <- factor(atm_means$Wave, levels = c("Pre-Pandemic", "First Wave", "Second Wave", "Third Wave"))
+
+# Define a colorblind-friendly color palette
+palette_cb <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7")
+
+# Step 7: Create slope plot
+atm_plot <- ggplot(atm_means, aes(x = Wave, y = Mean, group = factor(cluster), color = factor(cluster))) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3.2) +
+  scale_color_manual(values = palette_cb) +
+  labs(
+    title = "Change in Financial Access Points Across Pandemic Waves",
+    subtitle = "Mean scores for the factor: <i>Accessing to ATM in City</i>, by cluster",
+    x = "Pandemic Phase",
+    y = "Standardized Mean Score (Factor 4: Financial Access Points)",
+    color = "Cluster"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_markdown(size = 12),
+    axis.title = element_text(size = 13),
+    axis.text = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+
+# Step 8: Save final image in high resolution
+ggsave("data/output/Factor4.png", plot = atm_plot, width = 10, height = 6, dpi = 600, bg = "white")
 
 
 
