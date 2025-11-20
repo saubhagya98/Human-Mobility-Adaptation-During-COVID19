@@ -76,6 +76,6 @@ final_plot <- ggdraw() +
   draw_plot(zoom_plot, x = 0.55, y = 0.4, width = 0.4, height = 0.4)
 
 # Save output
-ggsave("Factor1.png", plot = final_plot, width = 10, height = 6, dpi = 600, bg = "white")
+ggsave("data/output/Factor1.png", plot = final_plot, width = 10, height = 6, dpi = 600, bg = "white")
 
 
