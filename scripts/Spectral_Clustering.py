@@ -51,28 +51,39 @@ for sigma in sigma_values:
 
 plt.figure(figsize=(10, 6))
 
-# Plot all eigengaps using the default color cycle
+# Plot eigengaps
 lines = []
 for i in range(min(10, all_eigengaps[0].shape[0])):
     eigengap_values = [eigengaps[i] for eigengaps in all_eigengaps]
     line, = plt.plot(log_sigma_values, eigengap_values, linewidth=1.8, label=f"Eigengap {i+1}")
     lines.append(line)
 
-# Highlight the 4th eigengap (index 3)
+# Highlight the 4th eigengap
 highlight_index = 3
 highlight_values = [eigengaps[highlight_index] for eigengaps in all_eigengaps]
+
 base_color = lines[highlight_index].get_color()
-plt.plot(log_sigma_values, highlight_values, color=base_color, linewidth=2.5)
-plt.plot(log_sigma_values, highlight_values, color='gold', linewidth=10, alpha=0.8, label="Highlighted 4th Eigengap (k=4)")
 
-# Formatting
-plt.title("Eigengap vs. log(sigma)")
-plt.xlabel("log(sigma)")
-plt.ylabel("Eigengap")
+# Base line (kept under highlight)
+plt.plot(log_sigma_values, highlight_values, color=base_color, linewidth=3)
+
+# Yellow highlight overlay
+plt.plot(log_sigma_values, highlight_values, color='gold', linewidth=10, alpha=0.8,
+         label="Highlighted 4th Eigengap (k=4)")
+
+# Formatting with larger font sizes
+plt.title("Eigengap vs. log(sigma)", fontsize=18)
+plt.xlabel("log(sigma)", fontsize=16)
+plt.ylabel("Eigengap", fontsize=16)
+
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=9)
-plt.tight_layout()
 
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12)
+
+plt.tight_layout()
 
 # Save figure
 plt.savefig("data/output/eigengap_curve.png",
