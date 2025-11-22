@@ -86,7 +86,7 @@ plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12)
 plt.tight_layout()
 
 # Save figure
-plt.savefig("data/output/eigengap_curve.png",
+plt.savefig("data/output/Eigengap_Curve_Spectral_Clustering.png",
             bbox_inches="tight", dpi=600)
 
 plt.show()
