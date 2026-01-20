@@ -87,8 +87,9 @@ Code: [preprocessData](./scripts/preprocessData.py)
 
 ## Cluster Analysis
 Code: [Spectral Clustering](./scripts/Spectral_Clustering.py)
-[K-Means Clustering](.
+[K-Means Clustering](./scripts/KMeans_Clustering.py)
 
 ## Mobility Trends
+Code: 
 
 ## Reliability and Validity
