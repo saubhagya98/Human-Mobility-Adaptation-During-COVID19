@@ -76,6 +76,7 @@ Assesses social density and exposure risk:
 * **Scale Values:** `[-1.5, -1, 1, 1.5]`
 ### 2. Capturing Pandemic-Induced Change
 The primary metric for analysis is the "Behavioral Change" score.
+
 **Transformation Formula:**
 $$\Delta \text{Behavior} = \text{Pre-Pandemic Value} - \left( \frac{\text{First Wave Value} + \text{Second Wave Value} + \text{Third Wave Value}}{3} \right)$$
 
