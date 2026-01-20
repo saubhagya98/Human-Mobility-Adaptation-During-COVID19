@@ -87,11 +87,11 @@ Processed Dataset:[a1_dataset](./data/output/a1_dataset.csv)
 [ExploratoryFactorAnalysis.spv](./ExploratoryFactorAnalysis.spv)
 
 ## Cluster Analysis
-Code: [Spectral Clustering](./scripts/Spectral_Clustering.py)
+[Spectral Clustering](./scripts/Spectral_Clustering.py)
 [K-Means Clustering](./scripts/KMeans_Clustering.py)
 
 ## Mobility Trends
-Code: [Mobility Trends](./scripts/Mobility_Trends.R)
+[Mobility Trends](./scripts/Mobility_Trends.R)
 
 ## Reliability and Validity
-Code: https:/main/CFA.R
+
