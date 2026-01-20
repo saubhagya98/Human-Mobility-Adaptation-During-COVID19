@@ -13,40 +13,40 @@ Most mobility variables are measured using the following 4-point Likert scale:
 
 ### 3C.1 Access to Food Sources
 Measures the frequency of accessing various food supply points:
-- Neighborhood shops/stores
-- Main Super Markets
-- Mini super markets
-- Home delivery/mobile shops
-- Own fields
-- Government/NGO sources
-- Online apps (PickMe, Uber, Kapruka, etc.)
-- Neighbors
-- Fairs (local markets) in cities/villages
+- sof_neighborhood_shop: Neighborhood shops/stores
+- sof_main_super_market: Main Super Markets
+- sof_mini_super_market: Mini super markets
+- sof_home_delivery_or_mobile_shops: Home delivery/mobile shops
+- sof_own_field: Own fields
+- sof_govt_ngo: Government/NGO sources
+- sof_online: Online shopping
+- sof_neighbors: Neighbors
+- sof_fairs: Fairs (local markets) in cities/villages
 
 ### 3C.2 Access to Financial Localities
 Tracks interaction with financial services:
-- Bank in town/city
-- Bank nearby
-- Local financial institutes (e.g., Sanasa)
-- ATM in city
-- ATM nearby
-- Online banking
-- Post office
+- fin_bank_city: Bank in town/city
+- fin_bank_near: Bank nearby
+- fin_local_financial: Local financial institutes (e.g., Sanasa)
+- fin_atm_city: ATM in city
+- fin_atm_near: ATM nearby
+- fin_online_banking: Online banking
+- fin_post_office: Post office
 
 ### 3C.3 Leisure and Social Activities
 Measures non-essential movement:
-- Trips/Excursions
-- Recreational places
-- Social Gatherings
+- lei_trips: Trips/Excursions
+- lei_recreational: Recreational places
+- lei_social_gathering: Social Gatherings
 
 ### 3C.4 General Transportation Modes
 Tracks the mode of transport used for general purposes:
-- Public transport
-- Shared vehicles (School/Staff vans)
-- Hired three-wheelers
-- Own motor vehicles
-- Bicycles
-- Walking
+- mot_public: Public transport
+- mot_shared_vehi: Shared vehicles (School/Staff vans)
+- mot_hired: Hired three-wheelers
+- mot_own_vehicle: Own motor vehicles
+- mot_bicycle: Bicycles
+- mot_walking: Walking
 
 ---
 
@@ -54,21 +54,21 @@ Tracks the mode of transport used for general purposes:
 These variables focus on employment-related movement and the level of physical exposure in the workplace.
 
 #### 3C.5.1 Work Location Patterns
-- Work from home
-- Commute from home
-- Commute from rented/boarding place
-- Commute from common hostel
+- w_work_from_home: Work from home
+- w_come_from_home: Commute from home
+- w_come_from_renthouse: Commute from rented/boarding place
+- w_come_from_commonhostel: Commute from common hostel
 
 #### 3C.5.2 Work Transportation
 Specifically captures the mode of transport used for commuting to work (Public, Shared, Hired, Own Vehicle, Bicycle, or Walking).
 
 #### 3C.5.3 Level of Human Interaction at Work
 Assesses social density and exposure risk:
-- Working alone at home
-- Working with a few known people
-- Working with regular few known people and limited unknown people
-- Working with irregular few unknown people
-- Working with irregular large groups
+- w_alone_home: Working alone at home
+- w_with_few_known: Working with a few known people
+- w_with_few_known_lim_unknown: Working with regular few known people and limited unknown people
+- w_with_few_irre_unknown: Working with irregular few unknown people
+- w_with_large_irre_unknown: Working with irregular large groups
 
 ## Data Transformation
 ### 1. Symmetric Linear Scaling
