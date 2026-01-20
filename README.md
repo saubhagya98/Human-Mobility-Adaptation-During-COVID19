@@ -64,11 +64,11 @@ Specifically captures the mode of transport used for commuting to work (Public, 
 
 #### 3C.5.3 Level of Human Interaction at Work
 Assesses social density and exposure risk:
-- **1:** Working alone at home
-- **2:** Working with a few known people
-- **3:** Working with regular few known people and limited unknown people
-- **4:** Working with irregular few unknown people
-- **5:** Working with irregular large groups
+- Working alone at home
+- Working with a few known people
+- Working with regular few known people and limited unknown people
+- Working with irregular few unknown people
+- Working with irregular large groups
 
 ## Data Transformation
 
