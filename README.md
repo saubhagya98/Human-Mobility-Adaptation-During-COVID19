@@ -3,4 +3,6 @@ Data-driven modelling (Unsupervised Machine Learning) to identify the changes in
 
 **Original Dataset:** [Harvard Dataverse DOI: 10.7910/DVN/CXMJSM](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CXMJSM)
 
+## Mobility Impact Variables
+
 ## Data Transformation
