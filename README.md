@@ -88,7 +88,9 @@ Processed Dataset:[a1_dataset](./data/output/a1_dataset.csv)
 [ExploratoryFactorAnalysis.spv](./ExploratoryFactorAnalysis.spv)
 
 ## Cluster Analysis
+A sequential clustering approach where the optimal number of clusters was first identified using a sigma-sweep-based spectral clustering procedure, after which the k-means algorithm was applied to the feature space to define the final behavioral archetypes.
 [Spectral Clustering](./scripts/Spectral_Clustering.py)
+
 [K-Means Clustering](./scripts/KMeans_Clustering.py)
 
 ## Mobility Trends
