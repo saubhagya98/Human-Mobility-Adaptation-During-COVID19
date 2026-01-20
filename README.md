@@ -4,6 +4,71 @@ Data-driven modelling (Unsupervised Machine Learning) to identify the changes in
 **Original Dataset:** [Harvard Dataverse DOI: 10.7910/DVN/CXMJSM](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CXMJSM)
 
 ## Mobility Impact Variables
+### Frequency Scale
+Most mobility variables are measured using the following 4-point Likert scale:
+- **1:** Never
+- **2:** Less often
+- **3:** Often
+- **4:** Very Often
+
+### 3C.1 Access to Food Sources
+Measures the frequency of accessing various food supply points:
+- Neighborhood shops/stores
+- Main Super Markets
+- Mini super markets
+- Home delivery/mobile shops
+- Own fields
+- Government/NGO sources
+- Online apps (PickMe, Uber, Kapruka, etc.)
+- Neighbors
+- Fairs (local markets) in cities/villages
+
+### 3C.2 Access to Financial Localities
+Tracks interaction with financial services:
+- Bank in town/city
+- Bank nearby
+- Local financial institutes (e.g., Sanasa)
+- ATM in city
+- ATM nearby
+- Online banking
+- Post office
+
+### 3C.3 Leisure and Social Activities
+Measures non-essential movement:
+- Trips/Excursions
+- Recreational places
+- Social Gatherings
+
+### 3C.4 General Transportation Modes
+Tracks the mode of transport used for general purposes:
+- Public transport
+- Shared vehicles (School/Staff vans)
+- Hired three-wheelers
+- Own motor vehicles
+- Bicycles
+- Walking
+
+---
+
+### 3C.5 Work-Related Mobility and Interaction
+These variables focus on employment-related movement and the level of physical exposure in the workplace.
+
+#### 3C.5.1 Work Location Patterns
+- Work from home
+- Commute from home
+- Commute from rented/boarding place
+- Commute from common hostel
+
+#### 3C.5.2 Work Transportation
+Specifically captures the mode of transport used for commuting to work (Public, Shared, Hired, Own Vehicle, Bicycle, or Walking).
+
+#### 3C.5.3 Level of Human Interaction at Work
+Assesses social density and exposure risk:
+- **1:** Working alone at home
+- **2:** Working with a few known people
+- **3:** Working with regular few known people and limited unknown people
+- **4:** Working with irregular few unknown people
+- **5:** Working with irregular large groups
 
 ## Data Transformation
 
