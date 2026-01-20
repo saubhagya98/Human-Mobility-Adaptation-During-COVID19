@@ -4,6 +4,8 @@ Data-driven modelling (Unsupervised Machine Learning) to identify the changes in
 **Original Dataset:** [Harvard Dataverse DOI: 10.7910/DVN/CXMJSM](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CXMJSM)
 
 ## Mobility Impact Variables
+Extracted Dataset" 
+In the dataset variables, **PP** stands for Pre-Pandemic, **FP** for First Wave, **SP** for Second Wave, and **TP** for Third Wave.
 ### Frequency Scale
 Most mobility variables are measured using the following 4-point Likert scale:
 - **1:** Never
