@@ -95,4 +95,4 @@ Processed Dataset:[a1_dataset](./data/output/a1_dataset.csv)
 [Mobility Trends](./scripts/Mobility_Trends.R)
 
 ## Reliability and Validity
-
+[CFA](./scripts/CFA.R)
