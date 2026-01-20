@@ -74,8 +74,10 @@ Assesses social density and exposure risk:
 ### 1. Symmetric Linear Scaling
 [cite_start]To reflect both the **magnitude** and **direction** of behavioral changes, Likert-scale questionnaire items were recorded on a symmetric directional scale:
 * **Scale Values:** `[-1.5, -1, 1, 1.5]`
+### 2. Capturing Pandemic-Induced Change
+The primary metric for analysis is the "Behavioral Change" score.
 **Transformation Formula:**
-$$\Delta \text{Behavior} = \text{Pre-Pandemic Value} - \left( \frac{\text{Wave}_1 + \text{Wave}_2 + \text{Wave}_3}{3} \right)$$
+$$\Delta \text{Behavior} = \text{Pre-Pandemic Value} - \left( \frac{\text{First Wave Value} + \text{Second Wave Value} + \text{Third Wave Value}}{3} \right)$$
 
 ## Exploratory Factor Analysis
 
