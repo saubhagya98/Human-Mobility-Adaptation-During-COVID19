@@ -6,3 +6,11 @@ Data-driven modelling (Unsupervised Machine Learning) to identify the changes in
 ## Mobility Impact Variables
 
 ## Data Transformation
+
+## Exploratory Factor Analysis
+
+## Cluster Analysis
+
+## Mobility Trends
+
+## Reliability and Validity
