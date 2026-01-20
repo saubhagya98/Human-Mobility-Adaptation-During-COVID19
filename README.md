@@ -101,4 +101,5 @@ A sequential clustering approach where the optimal number of clusters was first 
 
 ## Reliability and Validity
 The confirmatory factor analysis (CFA) was conducted using robust maximum likelihood estimation with Huber-White robust standard errors and Yuan-Bentler scaled test statistics to account for departures from multivariate normality, yielding an acceptable incremental model fit.
+
 [CFA](./scripts/CFA.R)
