@@ -81,6 +81,7 @@ The primary metric for analysis is the "Behavioral Change" score.
 $$\Delta \text{Behavior} = \text{Pre-Pandemic Value} - \left( \frac{\text{First Wave Value} + \text{Second Wave Value} + \text{Third Wave Value}}{3} \right)$$
 
 ## Exploratory Factor Analysis
+https://github.com/saubhagya98/Human-Mobility-Adaptation-During-COVID19/blob/main/ExploratoryFactorAnalysis.spv
 
 ## Cluster Analysis
 
