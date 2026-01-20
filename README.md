@@ -86,6 +86,7 @@ Processed Dataset:[a1_dataset](./data/output/a1_dataset.csv)
 
 ## Exploratory Factor Analysis
 The exploratory factor analysis (EFA) process involved identifying principal factors via Principal Component Analysis (PCA), followed by a varimax rotation to maximize loading variance. The analysis was conducted in IBM SPSS, with items retained if their factor loadings were above 0.4 and those with significant cross-loadings removed. 
+
 [ExploratoryFactorAnalysis.spv](./ExploratoryFactorAnalysis.spv)
 
 ## Cluster Analysis
