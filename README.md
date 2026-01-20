@@ -81,6 +81,7 @@ The primary metric for analysis is the "Behavioral Change" score.
 $$\Delta \text{Behavior} = \text{Pre-Pandemic Value} - \left( \frac{\text{First Wave Value} + \text{Second Wave Value} + \text{Third Wave Value}}{3} \right)$$
 
 Code: [preprocessData](./scripts/preprocessData.py)
+Processed Dataset: 
 
 ## Exploratory Factor Analysis
 [ExploratoryFactorAnalysis.spv](./ExploratoryFactorAnalysis.spv)
