@@ -17,8 +17,6 @@ Factor7  =~ 1*mot_bicycle + wmot_bicycle
 Factor8  =~ 1*w_with_few_irre_unknown + w_with_large_irre_unknown
 Factor9  =~ 1*wmot_hired + mot_hired
 Factor10 =~ sof_home_delivery_or_mobile_shops + sof_neighbors + fin_bank_near
-Factor10 ~~ Factor10
-Factor9 ~~ Factor9
 Factor11 =~ 1*wmot_shared + mot_shared_vehi
 Factor12 =~ 1*w_come_from_renthouse + wmot_walking
 Factor13 =~ 1*sof_online + fin_online_banking
@@ -123,4 +121,5 @@ robust_table
 mardia_test <- mvn(data = data_z, mvnTest = "mardia")
 install.packages("MVN")
 mardia_test$multivariateNormality
+
 mvn(data = data_z, mvnTest = "hz")
