@@ -19,7 +19,7 @@ library(psych)
 # ------------------------------------------------------------------------------
 # Update the data_path to the location of your CSV file on your local machine.
 # The uploaded file contains 40 items with a '_PP' suffix.
-data_path <- "dataset_for_unsupervised_ML.csv"
+data_path <- "data/output/dataset_for_unsupervised_ML.csv"
 
 if (!file.exists(data_path)) {
   stop("Dataset not found! Please place the CSV in your active working directory or update 'data_path'.")
