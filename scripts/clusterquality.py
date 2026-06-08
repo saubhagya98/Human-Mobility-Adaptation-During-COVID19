@@ -5,6 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score  # Added for validation
+from sklearn.metrics import davies_bouldin_score, calinski_harabasz_score
 
 # Define the file path
 file_path = "data/output/dataset_for_unsupervised_ML.csv"
@@ -40,6 +41,50 @@ for k in k_range:
     labels = kmeans.fit_predict(X)
     score = silhouette_score(X, labels)
     silhouette_scores.append(score)
+
+# Set up the plot
+plt.figure(figsize=(10, 6))
+
+# Plot silhouette scores against cluster counts
+plt.plot(list(k_range), silhouette_scores, marker='o', color='teal', linewidth=2, markersize=8, label="Silhouette Score")
+
+# Formatting with larger font sizes
+plt.title("Silhouette Score vs. Number of Clusters (k)", fontsize=18)
+plt.xlabel("Number of Clusters (k)", fontsize=16)
+plt.ylabel("Average Silhouette Score", fontsize=16)
+
+plt.xticks(list(k_range), fontsize=14)
+plt.yticks(fontsize=14)
+
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend(fontsize=12)
+plt.tight_layout()
+
+# Save figure
+plt.savefig("data/output/Silhouette_Scores_KMeans.png",
+            bbox_inches="tight", dpi=600)
+
+plt.show()
+
+# --- EXTENSION START: Specific validation metrics for k = 4 clusters ---
+# Run KMeans specifically for 4 clusters
+kmeans_4 = KMeans(n_clusters=4, random_state=42, n_init=10)
+labels_4 = kmeans_4.fit_predict(X)
+
+# Calculate additional internal validation metrics
+sil_4 = silhouette_score(X, labels_4)
+db_4 = davies_bouldin_score(X, labels_4)
+ch_4 = calinski_harabasz_score(X, labels_4)
+
+# Print metrics to console using standard journal reporting formatting
+print("\n" + "="*50)
+print("INTERNAL CLUSTER QUALITY METRICS (k = 4)")
+print("="*50)
+print(f"Silhouette Coefficient (Higher is better):  {sil_4:.4f}")
+print(f"Calinski-Harabasz Index (Higher is better): {ch_4:.4f}")
+print(f"Davies-Bouldin Index (Lower is better):     {db_4:.4f}")
+print("="*50 + "\n")
+# --- EXTENSION END ---
 
 # Set up the plot
 plt.figure(figsize=(10, 6))
